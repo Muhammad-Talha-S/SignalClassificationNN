@@ -26,3 +26,8 @@
 5. Best Model Selection
    - Select the best performing model
    - Save the best model for future use
+  
+## What's next:
+- Add labels to features and target
+- Fine tune the models with different learning rates, epochs etc
+- Debugging and testing 
