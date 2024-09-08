@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Computational Intelligence Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #5c5c61;
+        }
+
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #0077b6;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #005f87;
+        }
+
+        .group-info {
+            background-color: #e2e2e2;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        footer a:hover {
+            color: #ccc;
+        }
+
+        footer i {
+            margin-right: 8px;
+            color: white;
+        }
+
+        /* Center the metrics container */
+        .metrics-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            width: 96%;
+            margin: 20px auto;
+        }
+
+        .metric {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .metric h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #0077b6;
+        }
+
+        .metric p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .metric:hover {
+            background-color: #f0f0f0;
+        }
+
+        .interactive-block {
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #e8f7ff;
+            color: #0077b6;
+            margin-bottom: 10px;
+            display: none;
+            transition: max-height 0.3s ease;
+        }
+
+        .interactive-block p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .confusion-matrix {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .confusion-block {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .confusion-block h4 {
+            margin: 0;
+            font-size: 14px;
+            color: #0077b6;
+        }
+
+        .confusion-block p {
+            margin: 5px 0 0;
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Style for the chart container */
+        .chart-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            margin: auto;
+        }
+
+        .group-info canvas {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Computational Intelligence Project</h1>
+    </header>
+
+    <!-- Metrics and Signal Plots Section -->
+    <div class="metrics-container">
+        <h2 style="text-align:center;">Machine Learning Model Metrics</h2>
+
+        <!-- Confusion Matrix -->
+        <div class="metric" onclick="toggleInfo('confusion-matrix-info')">
+            <h3>Confusion Matrix</h3>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div id="confusion-matrix-info" class="interactive-block">
+            <div class="confusion-matrix">
+                <div class="confusion-block">
+                    <h4>True Positive (TP)</h4>
+                    <p>{{ confusion_matrix.TP }}</p>
+                </div>
+                <div class="confusion-block">
+                    <h4>False Positive (FP)</h4>
+                    <p>{{ confusion_matrix.FP }}</p>
+                </div>
+                <div class="confusion-block">
+                    <h4>True Negative (TN)</h4>
+                    <p>{{ confusion_matrix.TN }}</p>
+                </div>
+                <div class="confusion-block">
+                    <h4>False Negative (FN)</h4>
+                    <p>{{ confusion_matrix.FN }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accuracy -->
+        <div class="metric" onclick="toggleInfo('accuracy-info')">
+            <h3>Accuracy</h3>
+            <p>The ratio of correctly predicted instances.</p>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div id="accuracy-info" class="interactive-block">
+            <p>Accuracy = {{ metrics.accuracy }}</p>
+        </div>
+
+        <!-- Precision -->
+        <div class="metric" onclick="toggleInfo('precision-info')">
+            <h3>Precision</h3>
+            <p>Proportion of positive identifications that are actually correct.</p>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div id="precision-info" class="interactive-block">
+            <p>Precision = {{ metrics.precision }}</p>
+        </div>
+
+        <!-- Recall -->
+        <div class="metric" onclick="toggleInfo('recall-info')">
+            <h3>Recall</h3>
+            <p>Proportion of actual positives that are correctly identified.</p>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div id="recall-info" class="interactive-block">
+            <p>Recall = {{ metrics.recall }}</p>
+        </div>
+
+        <!-- F1-Score -->
+        <div class="metric" onclick="toggleInfo('f1-score-info')">
+            <h3>F1-Score</h3>
+            <p>The harmonic mean of Precision and Recall.</p>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div id="f1-score-info" class="interactive-block">
+            <p>F1-Score = {{ metrics.f1_score }}</p>
+        </div>
+    </div>
+
+    <!-- Container for all the charts -->
+    <div class="chart-container">
+        {% for i in range(signals|length) %}
+        <div class="group-info">
+            <canvas id="signalChart{{ i }}"></canvas>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="group-info">
+        <h3>Group Members</h3>
+        <p>Member 1: Muhammad Talha Saleem</p>
+        <p>Member 2: Kashif Hussain</p>
+        <p>Member 3: Naila Shaheen</p>
+    </div>
+
+    <div class="group-info">
+        <h3>Instructor</h3>
+        <p>Prof. Dr. Andrew Pech</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Computational Intelligence Project</p>
+        <a href="https://github.com/Muhammad-Talha-S/SignalClassificationNN" target="_blank">
+            <i class="fab fa-github"></i> View on GitHub
+        </a>
+    </footer>
+
+    <script>
+        function toggleInfo(id) {
+            var element = document.getElementById(id);
+            if (element.classList.contains('active')) {
+                element.classList.remove('active');
+            } else {
+                // Hide all interactive blocks before showing the clicked one
+                var allBlocks = document.querySelectorAll('.interactive-block');
+                allBlocks.forEach(function (block) {
+                    block.classList.remove('active');
+                });
+                element.classList.add('active');
+            }
+        }
+
+        // Get the signals and signal names data from Flask
+        var signals = {{ signals | tojson }};
+        var signalNames = {{ signal_names | tojson }};
+        var signalLegends = {{ signal_legend | tojson }};
+
+        // Loop through each signal and create a chart for each
+        signals.forEach(function (signal, index) {
+            var ctx = document.getElementById('signalChart' + index).getContext('2d');
+            var signalChart = new Chart(ctx, {
+                type: 'line', // Chart type (line chart)
+                data: {
+                    labels: signal.map((_, i) => i + 1), // X-axis labels
+                    datasets: [{
+                        label: signalLegends[index], // Use signal names for legend labels
+                        data: signal,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderWidth: 2,
+                        fill: true,
+                        pointRadius: 0 // Remove markers
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Time'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Signal Value'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'right' // Move legend to the right
+                        },
+                        title: {
+                            display: true,
+                            text: signalNames[index], // Title of the chart
+                            position: 'top',
+                            align: 'center',
+                            font: {
+                                size: 18
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
