@@ -6,7 +6,6 @@ from tensorflow.keras.models import load_model # type: ignore
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey'
-app.config['UPLOAD_FOLDER'] = r'D:\Projects\Flask-chartjs\static\files'
 
 @app.route('/', methods=['GET',"POST"])
 @app.route('/home', methods=['GET',"POST"])
@@ -15,62 +14,57 @@ def click_submit():
         file = request.files['file'] # grab the file
         selected_model = request.form.get('model')
 
-        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(file.filename))) #save the file
-
-        # excel_file = r'static\files\signal_classification_test_file_5_samples.xlsx'
-        # selected_model = 'Neural Network (NN)'
-
         dict_models_paths = {
-        'Neural Network (NN)': r'static\nn_models\source_classification_using_nn.h5',
-        'Long short-term memory (LSTM)': r'static\nn_models\source_classification_using_nn.h5',
-        'Convolutional neural network (CNN)': r'static\nn_models\source_classification_using_nn.h5'
+        'Neural Network (NN)': r'classification_models\source_classification_using_dnn.h5',
+        'Convolutional neural network (CNN)': r'classification_models\source_classification_using_cnn.h5',
+        'Long short-term memory (LSTM)': r'classification_models\source_classification_using_cnn.h5' # TODO: LSTM
         }
 
         model_metrices = {
         'Neural Network (NN)': {
 
             'confusion_matrix': {
-                'TP': 100,
-                'FP': 10,
-                'TN': 30,
-                'FN': 5
+                'TP': 15,
+                'FP': 0,
+                'TN': 15,
+                'FN': 0
             },
             'metrics': {
-                'accuracy': 94,
-                'precision': 52,
-                'recall': 62,
-                'f1_score': 20
+                'accuracy': 100,
+                'precision': 100,
+                'recall': 100,
+                'f1_score': 100
             }   
         },
         'Long short-term memory (LSTM)': {
 
             'confusion_matrix': {
-                'TP': 100,
-                'FP': 10,
-                'TN': 30,
-                'FN': 5
+                'TP': 0,
+                'FP': 0,
+                'TN': 0,
+                'FN': 0
             },
             'metrics': {
-                'accuracy': 94,
-                'precision': 52,
-                'recall': 62,
-                'f1_score': 20
+                'accuracy': 0,
+                'precision': 0,
+                'recall': 0,
+                'f1_score': 0
             }   
         },
         'Convolutional neural network (CNN)': {
 
             'confusion_matrix': {
-                'TP': 100,
-                'FP': 10,
-                'TN': 30,
-                'FN': 5
+                'TP': 15,
+                'FP': 0,
+                'TN': 15,
+                'FN': 0
             },
             'metrics': {
-                'accuracy': 94,
-                'precision': 52,
-                'recall': 62,
-                'f1_score': 20
-            }   
+                'accuracy': 100,
+                'precision': 100,
+                'recall': 100,
+                'f1_score': 100
+            }
         }
     }
 

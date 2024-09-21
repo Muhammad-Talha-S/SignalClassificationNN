@@ -9,9 +9,6 @@ __pycache__/
 # Neural Network Model Files
 *.h5
 
-# Ignore Excel files
-excel_files/
-
 # Machine Learning Models
 nn_models/
 
