@@ -17,7 +17,7 @@ def click_submit():
         dict_models_paths = {
         'Neural Network (NN)': r'classification_models\source_classification_using_dnn.h5',
         'Convolutional neural network (CNN)': r'classification_models\source_classification_using_cnn.h5',
-        'Long short-term memory (LSTM)': r'classification_models\source_classification_using_cnn.h5' # TODO: LSTM
+        'Long short-term memory (LSTM)': r'classification_models\source_classification_using_lstm.h5' # TODO: LSTM
         }
 
         model_metrices = {
