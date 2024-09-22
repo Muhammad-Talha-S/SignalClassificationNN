@@ -6,6 +6,13 @@ This project focuses on classifying digital time signals (noise) that originate 
 
 The models are pre-trained and stored for future use. This project not only trains these models but also provides a Flask-based web application where users can upload signal data, select a model, and view prediction results along with relevant performance metrics.
 
+## Technologies Used
+
+1. **Python**
+2. **Flask**
+3. **HTML, CSS, JavaScript**
+4. **TensorFlow**
+
 ## Models Implemented
 
 1. **Neural Network (NN)**: A basic feedforward neural network that learns to classify the signals.
@@ -21,6 +28,26 @@ The models are pre-trained and stored for future use. This project not only trai
 - A web application with an easy-to-use interface for signal prediction.
 - Performance metrics including confusion matrix, recall, precision, and accuracy.
 - Visualization of predicted signal classifications.
+
+## Folder Structure
+
+SignalClassificationNN/
+├── classification_models/
+│ ├── source_classification_using_cnn.h5
+│ ├── source_classification_using_dnn.h5
+│ ├── source_classification_using_lstm.h5
+├── excel_files/
+│ ├── source_1.xlsx
+│ ├── source_2.xlsx
+├── templates/
+│ ├── index.html
+│ ├── main_page.html
+├── app.py
+├── data_processing_and_model_preparation.ipynb
+├── LICENSE
+├── model_training.py
+├── README.md
+└── requirements.txt
 
 ## How to Run the Project
 
