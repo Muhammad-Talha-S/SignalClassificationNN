@@ -9,8 +9,8 @@ __pycache__/
 # Neural Network Model Files
 *.h5
 
-# Machine Learning Models
-nn_models/
+# Model Metrices Plots
+*.png
 
 # Distribution / packaging
 .Python

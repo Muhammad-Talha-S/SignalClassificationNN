@@ -49,6 +49,7 @@ def plot_model_metrices(model_name, model_history):
 
     print(f"Plotting metrics for {model_name}...")
     # Plot training & validation accuracy values
+    plt.figure()
     plt.plot(model_history['accuracy'])
     plt.plot(model_history['val_accuracy'])
     plt.title(f'{model_name} Accuracy')
@@ -148,9 +149,15 @@ def train_and_save_lstm_model(x_train, y_train, model_lstm_fp):
 def main():
     source_1_fp = Path("excel_files/source_1.xlsx")
     source_2_fp = Path("excel_files/source_2.xlsx")
-    model_cnn_fp = 'classification_models/source_classification_using_cnn.h5'
-    model_dnn_fp = 'classification_models/source_classification_using_dnn.h5'
-    model_lstm_fp = 'classification_models/source_classification_using_lstm.h5'
+
+    model_directory = Path("classification_models")
+    if not model_directory.exists():
+        print(f"Creating model directory, {model_directory}...")
+        model_directory.mkdir()
+
+    model_cnn_fp = model_directory / 'source_classification_using_cnn.h5'
+    model_dnn_fp = model_directory / 'source_classification_using_dnn.h5'
+    model_lstm_fp = model_directory / 'source_classification_using_lstm.h5'
 
     print("Starting training pipeline...")
     x_train, y_train, x_test, y_test = create_training_data(source_1_fp, source_2_fp)
