@@ -124,9 +124,9 @@ _Insert Video Here_
 
 - Muhammad Talha Saleem
 - Kashif Hussain
-- Naila
+- Naila Shaheen
 
 ### Project Submitted To
 
-**Professor Andrew Pech**  
+**Professor Andreas Pech**  
 Computational Intelligence Project
