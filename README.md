@@ -6,6 +6,12 @@ This project focuses on classifying digital time signals (noise) that originate 
 
 The models are pre-trained and stored for future use. This project not only trains these models but also provides a Flask-based web application where users can upload signal data, select a model, and view prediction results along with relevant performance metrics.
 
+## Objectives
+The primary objectives of this research are:
+- To develop and compare the performance of NN, CNN, and LSTM models for signal classification.
+- To create pre-trained models for immediate use in practical applications.
+- To design and implement a web-based application that allows users to utilize these models for real-time signal classification.
+
 ## Technologies Used
 
 1. **Python**
