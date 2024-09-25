@@ -37,26 +37,6 @@ The primary objectives of this research are:
 - Performance metrics including confusion matrix, recall, precision, and accuracy.
 - Visualization of predicted signal classifications.
 
-## Folder Structure
-
-SignalClassificationNN/ # Root directory of the project
-├── classification_models/ # Folder containing saved model files
-│ ├── source_classification_using_cnn.h5 # CNN model
-│ ├── source_classification_using_dnn.h5 # DNN model
-│ ├── source_classification_using_lstm.h5 # LSTM model
-├── excel_files/ # Folder containing signal data in Excel format
-│ ├── source_1.xlsx # Excel file for signals from source 1
-│ ├── source_2.xlsx # Excel file for signals from source 2
-├── templates/ # Folder for HTML templates for the web app
-│ ├── index.html # Home page template
-│ ├── main_page.html # Main classification page template
-├── app.py # Flask web app for signal classification
-├── data_processing_and_model_preparation.ipynb # Jupyter notebook for data processing and model training
-├── LICENSE # License file
-├── model_training.py # Python script for training models
-├── README.md # Project readme file
-└── requirements.txt # Python package dependencies
-
 ## How to Run the Project
 
 ### Step 1: Clone the Repository
