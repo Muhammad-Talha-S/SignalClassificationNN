@@ -7,7 +7,9 @@ This project focuses on classifying digital time signals (noise) that originate 
 The models are pre-trained and stored for future use. This project not only trains these models but also provides a Flask-based web application where users can upload signal data, select a model, and view prediction results along with relevant performance metrics.
 
 ## Objectives
+
 The primary objectives of this research are:
+
 - To develop and compare the performance of NN, CNN, and LSTM models for signal classification.
 - To create pre-trained models for immediate use in practical applications.
 - To design and implement a web-based application that allows users to utilize these models for real-time signal classification.
@@ -37,25 +39,23 @@ The primary objectives of this research are:
 
 ## Folder Structure
 
-SignalClassificationNN/
-    .
-    ├── ...
-    ├── classification_models/
-    │   ├── source_classification_using_cnn.h5
-    │   ├── source_classification_using_dnn.h5
-    ├── excel_files/
-    │   ├── source_1.xlsx
-    │   ├── source_2.xlsx
-    ├── templates/
-    │   ├── index.html
-    │   ├── main_page.html
-    ├── app.py
-    ├── data_processing_and_model_preparation.ipynb
-    ├── LICENSE
-    ├── model_training.py
-    ├── README.md
-    ├── requirements.txt
-    └── ...
+SignalClassificationNN/ # Root directory of the project
+├── classification_models/ # Folder containing saved model files
+│ ├── source_classification_using_cnn.h5 # CNN model
+│ ├── source_classification_using_dnn.h5 # DNN model
+│ ├── source_classification_using_lstm.h5 # LSTM model
+├── excel_files/ # Folder containing signal data in Excel format
+│ ├── source_1.xlsx # Excel file for signals from source 1
+│ ├── source_2.xlsx # Excel file for signals from source 2
+├── templates/ # Folder for HTML templates for the web app
+│ ├── index.html # Home page template
+│ ├── main_page.html # Main classification page template
+├── app.py # Flask web app for signal classification
+├── data_processing_and_model_preparation.ipynb # Jupyter notebook for data processing and model training
+├── LICENSE # License file
+├── model_training.py # Python script for training models
+├── README.md # Project readme file
+└── requirements.txt # Python package dependencies
 
 ## How to Run the Project
 
