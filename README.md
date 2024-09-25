@@ -38,22 +38,24 @@ The primary objectives of this research are:
 ## Folder Structure
 
 SignalClassificationNN/
-├── classification_models/
-│ ├── source_classification_using_cnn.h5
-│ ├── source_classification_using_dnn.h5
-│ ├── source_classification_using_lstm.h5
-├── excel_files/
-│ ├── source_1.xlsx
-│ ├── source_2.xlsx
-├── templates/
-│ ├── index.html
-│ ├── main_page.html
-├── app.py
-├── data_processing_and_model_preparation.ipynb
-├── LICENSE
-├── model_training.py
-├── README.md
-└── requirements.txt
+    .
+    ├── ...
+    ├── classification_models/
+    │   ├── source_classification_using_cnn.h5
+    │   ├── source_classification_using_dnn.h5
+    ├── excel_files/
+    │   ├── source_1.xlsx
+    │   ├── source_2.xlsx
+    ├── templates/
+    │   ├── index.html
+    │   ├── main_page.html
+    ├── app.py
+    ├── data_processing_and_model_preparation.ipynb
+    ├── LICENSE
+    ├── model_training.py
+    ├── README.md
+    ├── requirements.txt
+    └── ...
 
 ## How to Run the Project
 
