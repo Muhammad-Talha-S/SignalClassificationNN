@@ -39,16 +39,16 @@ def click_submit():
         'Long short-term memory (LSTM)': {
 
             'confusion_matrix': {
-                'TP': 0,
-                'FP': 0,
-                'TN': 0,
-                'FN': 0
+                'TP': 6,
+                'FP': 2,
+                'TN': 6,
+                'FN': 1
             },
             'metrics': {
-                'accuracy': 0,
-                'precision': 0,
-                'recall': 0,
-                'f1_score': 0
+                'accuracy': 80,
+                'precision': 75,
+                'recall': 85.71,
+                'f1_score': 80
             }   
         },
         'Convolutional neural network (CNN)': {
@@ -91,7 +91,7 @@ def click_submit():
             
             signals.append(list(sample))
             signal_names.append(f'Sample Number: {counter+1} Predicted Source: {source}')
-            signal_legend.append(f'Sample Number: {counter+1}')
+            signal_legend.append(f'Sample No: {counter+1}')
 
         confusion_matrix = model_metrices[selected_model]['confusion_matrix']
         metrics = model_metrices[selected_model]['metrics']

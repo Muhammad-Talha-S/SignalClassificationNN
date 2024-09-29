@@ -4,7 +4,7 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import (Conv1D, MaxPooling1D, Flatten,
-                                     Dense, Dropout, BatchNormalization)
+                                     LSTM, Dense, Dropout, BatchNormalization)
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.regularizers import l2
 from tensorflow.keras.callbacks import EarlyStopping
@@ -143,6 +143,26 @@ def train_and_save_nn_model(x_train, y_train, model_fp, model_name="Deep Neural 
 
 def train_and_save_lstm_model(x_train, y_train, model_lstm_fp):
     print("Training and saving LSTM model...")
+    lstm_model = Sequential()
+
+    # LSTM layers
+    lstm_model.add(LSTM(128, return_sequences=True, dropout=0.2, recurrent_dropout=0.2))
+    lstm_model.add(BatchNormalization())
+    lstm_model.add(LSTM(64, return_sequences=True, dropout=0.2, recurrent_dropout=0.2))
+    lstm_model.add(BatchNormalization())
+    lstm_model.add(LSTM(32, dropout=0.2, recurrent_dropout=0.2))
+    lstm_model.add(BatchNormalization())
+
+    # Fully connected layer
+    lstm_model.add(Dense(64, activation='relu'))
+    lstm_model.add(Dropout(0.3))
+
+    # Output layer for binary classification
+    lstm_model.add(Dense(1, activation='sigmoid'))
+
+    # Compile the model
+    lstm_model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.0001),
+                        loss='binary_crossentropy', metrics=['accuracy'])
     lstm_model = train_and_save_nn_model(x_train, y_train, model_lstm_fp, model_name="Long-Short Term Memory")
     return lstm_model
 
