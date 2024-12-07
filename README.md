@@ -110,8 +110,8 @@ _Insert Video Here_
 
 ### Group Members
 
-- Muhammad Talha Saleem
 - Kashif Hussain
+- Muhammad Talha Saleem
 - Naila Shaheen
 
 ### Project Submitted To
